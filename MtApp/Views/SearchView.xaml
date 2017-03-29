@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:local="clr-namespace:MtApp;assembly=MtApp"
+	x:Class="MtApp.SearchView">
+	<ContentPage.Content>
+	<StackLayout Margin="0,50,0,0" Orientation="Vertical">
+			<StackLayout 
+				Padding="10,0,10,0" 
+				Orientation="Horizontal">
+				<Entry Text="{Binding SearchQuery, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+				<Button Text="Поиск" Command="{Binding SearchCommand}"></Button>
+			</StackLayout>
+			<ActivityIndicator 
+				IsVisible="{Binding IsBusy}" 
+				IsRunning="{Binding IsBusy}"/>
+			<ListView
+				ItemsSource="{Binding Path=Results}">
+				<ListView.ItemTemplate>
+			      <DataTemplate>
+						<TextCell 
+							Text="{Binding Path=Setting.Key}"
+							Detail="{Binding Path=Setting.Value}"/>
+			      </DataTemplate>
+			    </ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
